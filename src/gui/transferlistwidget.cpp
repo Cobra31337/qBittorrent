@@ -1137,7 +1137,12 @@ void TransferListWidget::displayListMenu()
             break;
         }
     }
-
+    bool addedPreviewAction = false;
+    if (needsPreview)
+    {
+        listMenu->addAction(actionPreviewFile);
+        addedPreviewAction = true;
+    }
     if (needsStart)
         listMenu->addAction(actionStart);
     if (needsStop)
@@ -1228,12 +1233,7 @@ void TransferListWidget::displayListMenu()
         listMenu->addAction(actionSuperSeedingMode);
     }
     listMenu->addSeparator();
-    bool addedPreviewAction = false;
-    if (needsPreview)
-    {
-        listMenu->addAction(actionPreviewFile);
-        addedPreviewAction = true;
-    }
+    
     if (oneNotFinished)
     {
         actionSequentialDownload->setCheckState(allSameSequentialDownloadMode
